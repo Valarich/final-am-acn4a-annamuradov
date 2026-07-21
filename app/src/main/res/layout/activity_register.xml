@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_fondo"
+    tools:context=".RegisterActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/pantalla_padding">
+
+            <LinearLayout
+                android:id="@+id/contenedorRegistro"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="480dp">
+
+                <TextView
+                    android:id="@+id/txtTituloRegistro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titulo_registro"
+                    android:textColor="@color/color_texto_principal"
+                    android:textSize="@dimen/titulo_texto"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imgRegistro"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="@dimen/margen_chico"
+                    android:contentDescription="@string/descripcion_imagen_habitos"
+                    android:src="@drawable/habitos" />
+
+                <TextView
+                    android:id="@+id/txtDescripcionRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_chico"
+                    android:gravity="center"
+                    android:text="@string/descripcion_registro"
+                    android:textColor="@color/color_texto_principal"
+                    android:textSize="@dimen/descripcion_texto" />
+
+                <EditText
+                    android:id="@+id/inputNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_medio"
+                    android:autofillHints="name"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hint_nombre"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="@dimen/margen_chico"
+                    android:paddingEnd="@dimen/margen_chico"
+                    android:textColor="@color/color_texto_principal"
+                    android:textColorHint="@color/color_texto_principal" />
+
+                <EditText
+                    android:id="@+id/inputEmailRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_chico"
+                    android:autofillHints="emailAddress"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hint_email_registro"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="@dimen/margen_chico"
+                    android:paddingEnd="@dimen/margen_chico"
+                    android:textColor="@color/color_texto_principal"
+                    android:textColorHint="@color/color_texto_principal" />
+
+                <EditText
+                    android:id="@+id/inputPasswordRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_chico"
+                    android:autofillHints="newPassword"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hint_password_registro"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="@dimen/margen_chico"
+                    android:paddingEnd="@dimen/margen_chico"
+                    android:textColor="@color/color_texto_principal"
+                    android:textColorHint="@color/color_texto_principal" />
+
+                <EditText
+                    android:id="@+id/inputConfirmarPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_chico"
+                    android:autofillHints="newPassword"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hint_confirmar_password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="@dimen/margen_chico"
+                    android:paddingEnd="@dimen/margen_chico"
+                    android:textColor="@color/color_texto_principal"
+                    android:textColorHint="@color/color_texto_principal" />
+
+                <Button
+                    android:id="@+id/btnRegistrarse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_medio"
+                    android:minHeight="48dp"
+                    android:text="@string/boton_registrarse"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/btnVolverLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_chico"
+                    android:minHeight="48dp"
+                    android:text="@string/boton_volver_login"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

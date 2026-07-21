@@ -1,25 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Mis hábitos</string>
 
+    <!-- Pantalla principal -->
     <string name="titulo_habitos">Mis hábitos</string>
     <string name="descripcion_habitos">Agregá hábitos simples para organizar tu día.</string>
     <string name="boton_agregar_habito">Agregar hábito</string>
+    <string name="boton_limpiar_habitos">Limpiar lista</string>
     <string name="texto_habito_base">tomar agua</string>
     <string name="descripcion_imagen_habitos">Imagen de una lista de hábitos</string>
+    <string name="texto_lista_vacia">No hay hábitos cargados.</string>
+    <string name="texto_total_habitos">Total de hábitos: %1$d</string>
+    <string name="formato_habito">Hábito %1$d: %2$s</string>
 
+    <!-- Pantalla para agregar hábitos -->
     <string name="titulo_agregar_habito">Agregar hábito</string>
     <string name="descripcion_agregar_habito">Escribí el nombre de un hábito para sumarlo a tu lista.</string>
     <string name="hint_habito">Ejemplo: leer 10 minutos</string>
     <string name="boton_guardar_habito">Guardar hábito</string>
     <string name="mensaje_habito_vacio">Escribí un hábito primero</string>
-    <string name="boton_limpiar_habitos">Limpiar lista</string>
-    <string name="texto_lista_vacia">No hay hábitos cargados.</string>
-    <string name="texto_total_habitos">Total de hábitos: %1$d</string>
-    <string name="formato_habito">Hábito %1$d: %2$s</string>
+
+    <!-- Pantalla de inicio de sesión -->
+    <string name="titulo_login">Iniciar sesión</string>
+    <string name="descripcion_login">Ingresá con tu correo electrónico y contraseña.</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="boton_iniciar_sesion">Iniciar sesión</string>
+    <string name="boton_ir_registro">Crear cuenta</string>
+    <string name="mensaje_campos_obligatorios">Completá todos los campos.</string>
+    <string name="mensaje_login_exitoso">Inicio de sesión exitoso.</string>
+    <string name="mensaje_login_error">No se pudo iniciar sesión.</string>
+
+    <!-- Pantalla de registro -->
+    <string name="titulo_registro">Crear cuenta</string>
+    <string name="descripcion_registro">Registrate para guardar y administrar tus hábitos.</string>
+    <string name="hint_nombre">Nombre</string>
+    <string name="hint_email_registro">Correo electrónico</string>
+    <string name="hint_password_registro">Contraseña</string>
+    <string name="hint_confirmar_password">Confirmar contraseña</string>
+    <string name="boton_registrarse">Registrarse</string>
+    <string name="boton_volver_login">Ya tengo una cuenta</string>
+    <string name="mensaje_passwords_no_coinciden">Las contraseñas no coinciden.</string>
+    <string name="mensaje_password_corto">La contraseña debe tener al menos 6 caracteres.</string>
+    <string name="mensaje_registro_exitoso">Cuenta creada correctamente.</string>
+    <string name="mensaje_registro_error">No se pudo crear la cuenta.</string>
+
+    <!-- Hábitos iniciales -->
     <string-array name="habitos_iniciales">
         <item>tomar agua</item>
         <item>leer 10 minutos</item>
         <item>caminar</item>
         <item>dormir 8 horas</item>
     </string-array>
+
 </resources>
