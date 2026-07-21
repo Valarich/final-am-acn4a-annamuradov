@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "836825809114",
+    "project_id": "mis-habitos-final-annamuradov",
+    "storage_bucket": "mis-habitos-final-annamuradov.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836825809114:android:b0fed7640e88deda9325e3",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv-iggL4LVnyLf3dTw63oFWYVFC9FFAJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
