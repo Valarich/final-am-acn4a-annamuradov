@@ -11,39 +11,112 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class AddHabitActivity extends AppCompatActivity {
+
+    private EditText inputHabito;
+    private Button btnGuardarHabito;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_habit);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(
-                    systemBars.left + 24,
-                    systemBars.top + 24,
-                    systemBars.right + 24,
-                    systemBars.bottom + 24
+        ViewCompat.setOnApplyWindowInsetsListener(
+                findViewById(R.id.main),
+                (view, windowInsets) -> {
+                    Insets systemBars = windowInsets.getInsets(
+                            WindowInsetsCompat.Type.systemBars()
+                    );
+
+                    view.setPadding(
+                            systemBars.left + 24,
+                            systemBars.top + 24,
+                            systemBars.right + 24,
+                            systemBars.bottom + 24
+                    );
+
+                    return windowInsets;
+                }
+        );
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
+        inputHabito = findViewById(R.id.inputHabito);
+        btnGuardarHabito = findViewById(R.id.btnGuardarHabito);
+
+        btnGuardarHabito.setOnClickListener(
+                view -> guardarHabito()
+        );
+    }
+
+    private void guardarHabito() {
+        String textoHabito = inputHabito
+                .getText()
+                .toString()
+                .trim();
+
+        if (textoHabito.isEmpty()) {
+            inputHabito.setError(
+                    getString(R.string.mensaje_habito_vacio)
             );
-            return insets;
-        });
 
-        EditText inputHabito = findViewById(R.id.inputHabito);
-        Button btnGuardarHabito = findViewById(R.id.btnGuardarHabito);
+            inputHabito.requestFocus();
+            return;
+        }
 
-        btnGuardarHabito.setOnClickListener(v -> {
-            String textoHabito = inputHabito.getText().toString().trim();
+        FirebaseUser usuarioActual =
+                firebaseAuth.getCurrentUser();
 
-            if (textoHabito.isEmpty()) {
-                Toast.makeText(this, getString(R.string.mensaje_habito_vacio), Toast.LENGTH_SHORT).show();
-                return;
-            }
+        if (usuarioActual == null) {
+            abrirPantallaLogin();
+            return;
+        }
 
-            Intent intent = new Intent(AddHabitActivity.this, MainActivity.class);
-            intent.putExtra("nuevo_habito", textoHabito);
-            startActivity(intent);
-            finish();
-        });
+        btnGuardarHabito.setEnabled(false);
+
+        Habit nuevoHabito = new Habit(
+                textoHabito,
+                usuarioActual.getUid()
+        );
+
+        firestore
+                .collection("habitos")
+                .add(nuevoHabito)
+                .addOnSuccessListener(documentReference -> {
+                    setResult(RESULT_OK);
+                    finish();
+                })
+                .addOnFailureListener(exception -> {
+                    btnGuardarHabito.setEnabled(true);
+
+                    Toast.makeText(
+                            this,
+                            "No se pudo guardar el hábito.",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                });
+    }
+
+    private void abrirPantallaLogin() {
+        Intent intent = new Intent(
+                AddHabitActivity.this,
+                LoginActivity.class
+        );
+
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
+        );
+
+        startActivity(intent);
+        finish();
     }
 }
