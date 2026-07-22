@@ -159,6 +159,46 @@ Flujo de uso:
 
 ---
 
+## Capturas de pantalla
+
+A continuación se muestran las principales pantallas implementadas en la aplicación.
+
+### Pantalla de inicio de sesión
+
+Permite ingresar con correo electrónico y contraseña o acceder a la pantalla de registro.
+
+![Pantalla de inicio de sesión](docs/screenshots/login.png)
+
+---
+
+### Pantalla de registro
+
+Permite crear una cuenta mediante nombre, correo electrónico, contraseña y confirmación de contraseña.
+
+![Pantalla de registro](docs/screenshots/registro.png)
+
+---
+
+### Pantalla principal
+
+Muestra el nombre del usuario autenticado, la cantidad total de hábitos y las opciones disponibles para administrarlos.
+
+Desde esta pantalla se pueden agregar hábitos, modificar su estado, eliminar un hábito, limpiar la lista completa y cerrar sesión.
+
+![Pantalla principal de la aplicación](docs/screenshots/principal.png)
+
+---
+
+### Pantalla para agregar un hábito
+
+Permite escribir y guardar un nuevo hábito.
+
+La información se almacena en Cloud Firestore y el nombre del hábito se devuelve a la pantalla principal mediante un `Intent Extra`.
+
+![Pantalla para agregar un hábito](docs/screenshots/agregar_habito.png)
+
+---
+
 ## Flujo de navegación
 
 ```mermaid
@@ -430,6 +470,14 @@ Las interfaces se encuentran en:
 res/layout/
 ```
 
+### Capturas de pantalla
+
+Las capturas utilizadas en este informe se encuentran en:
+
+```text
+docs/screenshots/
+```
+
 ---
 
 ## Tecnologías utilizadas
@@ -474,30 +522,38 @@ Representa el modelo de datos utilizado por Cloud Firestore.
 ## Organización principal del proyecto
 
 ```text
-app/
-├── google-services.json
-└── src/main/
-    ├── AndroidManifest.xml
-    ├── java/com/example/myapplication/
-    │   ├── AddHabitActivity.java
-    │   ├── Habit.java
-    │   ├── LoginActivity.java
-    │   ├── MainActivity.java
-    │   └── RegisterActivity.java
-    └── res/
-        ├── drawable/
-        ├── layout/
-        │   ├── activity_add_habit.xml
-        │   ├── activity_login.xml
-        │   ├── activity_main.xml
-        │   └── activity_register.xml
-        ├── mipmap/
-        ├── values/
-        │   ├── colors.xml
-        │   ├── dimens.xml
-        │   ├── strings.xml
-        │   └── themes.xml
-        └── xml/
+MyApplicationParcial2/
+├── app/
+│   ├── google-services.json
+│   └── src/main/
+│       ├── AndroidManifest.xml
+│       ├── java/com/example/myapplication/
+│       │   ├── AddHabitActivity.java
+│       │   ├── Habit.java
+│       │   ├── LoginActivity.java
+│       │   ├── MainActivity.java
+│       │   └── RegisterActivity.java
+│       └── res/
+│           ├── drawable/
+│           ├── layout/
+│           │   ├── activity_add_habit.xml
+│           │   ├── activity_login.xml
+│           │   ├── activity_main.xml
+│           │   └── activity_register.xml
+│           ├── mipmap/
+│           ├── values/
+│           │   ├── colors.xml
+│           │   ├── dimens.xml
+│           │   ├── strings.xml
+│           │   └── themes.xml
+│           └── xml/
+├── docs/
+│   └── screenshots/
+│       ├── agregar_habito.png
+│       ├── login.png
+│       ├── principal.png
+│       └── registro.png
+└── README.md
 ```
 
 ---
@@ -563,6 +619,7 @@ feat: display current user name from Firestore
 feat: implement user logout
 feat: pass created habit between activities
 docs: update README with Firebase functionality
+docs: complete final project documentation
 ```
 
 ---
