@@ -29,6 +29,17 @@
             android:textSize="@dimen/titulo_texto"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/txtNombreUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen_chico"
+            android:gravity="center"
+            android:textColor="@color/color_texto_principal"
+            android:textSize="@dimen/descripcion_texto"
+            android:textStyle="bold"
+            tools:text="Hola, Murad" />
+
         <ImageView
             android:id="@+id/imgHabitos"
             android:layout_width="120dp"
@@ -96,7 +107,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margen_chico"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:id="@+id/listaHabitos"

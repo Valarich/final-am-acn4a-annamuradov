@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private final ArrayList<Habit> habitos = new ArrayList<>();
 
     private LinearLayout listaHabitos;
+    private TextView txtNombreUsuario;
     private TextView txtTotalHabitos;
     private TextView txtListaVacia;
     private Button btnLimpiarHabitos;
@@ -78,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
         listaHabitos =
                 findViewById(R.id.listaHabitos);
 
+        txtNombreUsuario =
+                findViewById(R.id.txtNombreUsuario);
+
         txtTotalHabitos =
                 findViewById(R.id.txtTotalHabitos);
 
@@ -112,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        cargarNombreUsuario(usuarioActual.getUid());
         escucharHabitos(usuarioActual.getUid());
     }
 
@@ -123,6 +128,39 @@ public class MainActivity extends AppCompatActivity {
             listenerHabitos.remove();
             listenerHabitos = null;
         }
+    }
+
+    private void cargarNombreUsuario(String usuarioId) {
+        firestore
+                .collection("usuarios")
+                .document(usuarioId)
+                .get()
+                .addOnSuccessListener(documento -> {
+                    if (!documento.exists()) {
+                        txtNombreUsuario.setText("");
+                        return;
+                    }
+
+                    String nombre = documento.getString("nombre");
+
+                    if (nombre == null || nombre.trim().isEmpty()) {
+                        txtNombreUsuario.setText("");
+                        return;
+                    }
+
+                    txtNombreUsuario.setText(
+                            "Hola, " + nombre
+                    );
+                })
+                .addOnFailureListener(exception -> {
+                    txtNombreUsuario.setText("");
+
+                    Toast.makeText(
+                            this,
+                            "No se pudo cargar el nombre del usuario.",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                });
     }
 
     private void escucharHabitos(String usuarioId) {
