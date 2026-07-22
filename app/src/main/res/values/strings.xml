@@ -5,14 +5,22 @@
 
     <!-- Pantalla principal -->
     <string name="titulo_habitos">Mis hábitos</string>
+    <string name="saludo_usuario">Hola, %1$s</string>
     <string name="descripcion_habitos">Agregá hábitos simples para organizar tu día.</string>
     <string name="boton_agregar_habito">Agregar hábito</string>
     <string name="boton_limpiar_habitos">Limpiar lista</string>
+    <string name="boton_cerrar_sesion">Cerrar sesión</string>
     <string name="texto_habito_base">tomar agua</string>
     <string name="descripcion_imagen_habitos">Imagen de una lista de hábitos</string>
     <string name="texto_lista_vacia">No hay hábitos cargados.</string>
     <string name="texto_total_habitos">Total de hábitos: %1$d</string>
     <string name="formato_habito">Hábito %1$d: %2$s</string>
+
+    <!-- Confirmación de cierre de sesión -->
+    <string name="titulo_cerrar_sesion">Cerrar sesión</string>
+    <string name="mensaje_cerrar_sesion">¿Querés cerrar la sesión actual?</string>
+    <string name="accion_cancelar">Cancelar</string>
+    <string name="accion_cerrar_sesion">Cerrar sesión</string>
 
     <!-- Pantalla para agregar hábitos -->
     <string name="titulo_agregar_habito">Agregar hábito</string>

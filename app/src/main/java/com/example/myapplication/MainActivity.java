@@ -35,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtNombreUsuario;
     private TextView txtTotalHabitos;
     private TextView txtListaVacia;
+
     private Button btnLimpiarHabitos;
+    private Button btnCerrarSesion;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
@@ -76,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
         btnLimpiarHabitos =
                 findViewById(R.id.btnLimpiarHabitos);
 
+        btnCerrarSesion =
+                findViewById(R.id.btnCerrarSesion);
+
         listaHabitos =
                 findViewById(R.id.listaHabitos);
 
@@ -99,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
         btnLimpiarHabitos.setOnClickListener(
                 view -> confirmarLimpiarHabitos()
+        );
+
+        btnCerrarSesion.setOnClickListener(
+                view -> confirmarCerrarSesion()
         );
 
         mostrarHabitos();
@@ -149,7 +158,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     txtNombreUsuario.setText(
-                            "Hola, " + nombre
+                            getString(
+                                    R.string.saludo_usuario,
+                                    nombre
+                            )
                     );
                 })
                 .addOnFailureListener(exception -> {
@@ -368,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
                                 + "\"?"
                 )
                 .setNegativeButton(
-                        "Cancelar",
+                        R.string.accion_cancelar,
                         null
                 )
                 .setPositiveButton(
@@ -415,7 +427,7 @@ public class MainActivity extends AppCompatActivity {
                                 + "No se puede deshacer."
                 )
                 .setNegativeButton(
-                        "Cancelar",
+                        R.string.accion_cancelar,
                         null
                 )
                 .setPositiveButton(
@@ -487,6 +499,27 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT
                     ).show();
                 });
+    }
+
+    private void confirmarCerrarSesion() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.titulo_cerrar_sesion)
+                .setMessage(R.string.mensaje_cerrar_sesion)
+                .setNegativeButton(
+                        R.string.accion_cancelar,
+                        null
+                )
+                .setPositiveButton(
+                        R.string.accion_cerrar_sesion,
+                        (dialog, which) ->
+                                cerrarSesion()
+                )
+                .show();
+    }
+
+    private void cerrarSesion() {
+        firebaseAuth.signOut();
+        abrirPantallaLogin();
     }
 
     private void abrirPantallaLogin() {
