@@ -28,6 +28,7 @@
     <string name="hint_habito">Ejemplo: leer 10 minutos</string>
     <string name="boton_guardar_habito">Guardar hábito</string>
     <string name="mensaje_habito_vacio">Escribí un hábito primero</string>
+    <string name="mensaje_habito_guardado">Hábito guardado: %1$s</string>
 
     <!-- Pantalla de inicio de sesión -->
     <string name="titulo_login">Iniciar sesión</string>

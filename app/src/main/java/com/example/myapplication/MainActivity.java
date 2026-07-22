@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private ListenerRegistration listenerHabitos;
 
+    private ActivityResultLauncher<Intent> agregarHabitoLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
                     );
 
                     int pantallaPadding = getResources()
-                            .getDimensionPixelSize(R.dimen.pantalla_padding);
+                            .getDimensionPixelSize(
+                                    R.dimen.pantalla_padding
+                            );
 
                     view.setPadding(
                             systemBars.left + pantallaPadding,
@@ -71,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
+        configurarResultadoAgregarHabito();
 
         Button btnAgregarHabito =
                 findViewById(R.id.btnAgregarHabito);
@@ -99,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     AddHabitActivity.class
             );
 
-            startActivity(intent);
+            agregarHabitoLauncher.launch(intent);
         });
 
         btnLimpiarHabitos.setOnClickListener(
@@ -111,6 +119,41 @@ public class MainActivity extends AppCompatActivity {
         );
 
         mostrarHabitos();
+    }
+
+    private void configurarResultadoAgregarHabito() {
+        agregarHabitoLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                resultado -> {
+                    if (resultado.getResultCode() != RESULT_OK) {
+                        return;
+                    }
+
+                    Intent datos = resultado.getData();
+
+                    if (datos == null) {
+                        return;
+                    }
+
+                    String nombreHabito = datos.getStringExtra(
+                            AddHabitActivity.EXTRA_HABITO_CREADO
+                    );
+
+                    if (nombreHabito == null
+                            || nombreHabito.trim().isEmpty()) {
+                        return;
+                    }
+
+                    Toast.makeText(
+                            this,
+                            getString(
+                                    R.string.mensaje_habito_guardado,
+                                    nombreHabito
+                            ),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+        );
     }
 
     @Override
@@ -152,7 +195,8 @@ public class MainActivity extends AppCompatActivity {
 
                     String nombre = documento.getString("nombre");
 
-                    if (nombre == null || nombre.trim().isEmpty()) {
+                    if (nombre == null
+                            || nombre.trim().isEmpty()) {
                         txtNombreUsuario.setText("");
                         return;
                     }
@@ -293,7 +337,9 @@ public class MainActivity extends AppCompatActivity {
         );
 
         int margenChico = getResources()
-                .getDimensionPixelSize(R.dimen.margen_chico);
+                .getDimensionPixelSize(
+                        R.dimen.margen_chico
+                );
 
         vistaHabito.setPadding(
                 margenChico,

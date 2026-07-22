@@ -17,6 +17,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddHabitActivity extends AppCompatActivity {
 
+    public static final String EXTRA_HABITO_CREADO =
+            "extra_habito_creado";
+
     private EditText inputHabito;
     private Button btnGuardarHabito;
 
@@ -91,7 +94,14 @@ public class AddHabitActivity extends AppCompatActivity {
                 .collection("habitos")
                 .add(nuevoHabito)
                 .addOnSuccessListener(documentReference -> {
-                    setResult(RESULT_OK);
+                    Intent resultado = new Intent();
+
+                    resultado.putExtra(
+                            EXTRA_HABITO_CREADO,
+                            textoHabito
+                    );
+
+                    setResult(RESULT_OK, resultado);
                     finish();
                 })
                 .addOnFailureListener(exception -> {
